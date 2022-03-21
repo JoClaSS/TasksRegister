@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://java.sun.com/jsf/passthrough">
+
+<h:head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+		crossorigin="anonymous" />
+
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+		integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+		crossorigin="anonymous" />
+
+	<link rel="stylesheet" type="text/css" href="css/estilos.css" />
+
+	<title>JSF - Persitencia de dados</title>
+</h:head>
+
+<h:body>
+	<header> <nav
+		class="navbar navbar-expand-sm navbar-dark bg-dark">
+	<div class="container">
+		<a href="index.html" class="navbar-brand">
+			<h6>
+				<span class="badge badge-secondary" action="#{taskMB.redireciona()}">+Pessoas</span>
+			</h6>
+		</a>
+		<button class="navbar-toggler" data-toggle="collapse"
+			data-target="#nav-principal">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="nav-principal"></div>
+	</div>
+	</nav> </header>
+	<h2 class="display-5 mt-4 mb-4">Cadastrar uma tarefa</h2>
+	<h:panelGrid columns="2">
+		<h:form class="mt-4 mb-4">
+			<ul class="list-group">
+				<li class="list-group-item">Título<h:inputText
+						value="#{taskMB.task.title}" id="title"
+						class="form-control input-md" /></li>
+				<li class="list-group-item">Prioridade<h:inputText
+						value="#{taskMB.task.priority}" id="priority"
+						class="form-control input-md" /></li>
+				<li class="list-group-item">Vencimento<h:inputText
+						value="#{taskMB.task.dealine}" id="deadline"
+						class="form-control input-md" /></li>
+				<li class="list-group-item">Atribuir a: <h:selectOneMenu
+						value="#{taskMB.task.responsible}">
+						<f:selectItem itemValue=" " itemLabel="Selecione uma opção" />
+						<f:selectItems value="#{profileMB.profileList}" var="profile"
+							itemLabel="#{profile.name}" itemValue="#{profile}" />
+					</h:selectOneMenu></li>
+				<li class="list-group-item">Detalhes<h:inputTextarea
+						value="#{taskMB.task.description}" id="description"
+						class="form-control input-md" /></li>
+				<li class="list-group-item">Status<h:selectBooleanCheckbox
+						value="#{taskMB.task.status}" id="status"
+						class="form-control input-md" /></li>
+			</ul>
+			<h:commandButton value="submit" class="btn btn-primary ml-2"
+				action="#{taskMB.saveTask()}" />
+		</h:form>
+	</h:panelGrid>
+
+
+</h:body>
+</html>

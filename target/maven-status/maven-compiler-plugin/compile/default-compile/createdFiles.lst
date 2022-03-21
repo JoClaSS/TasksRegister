@@ -1,0 +1,7 @@
+com\model\Profile.class
+com\dao\ProfileDAO.class
+com\bean\ProfileMB.class
+com\dao\TaskDAO.class
+com\util\HibernateUtil.class
+com\model\Task.class
+com\bean\TaskMB.class
