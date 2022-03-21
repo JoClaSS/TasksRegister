@@ -17,8 +17,20 @@ public class TaskDAO {
 
 		sessao.close();
 	}
+	
+	public void done(Long id) {
 
-	public void delete(int id) {
+		Session sessao = HibernateUtil.getSessionFactory().openSession();
+		sessao.beginTransaction();
+		Task aux = sessao.get(Task.class, id);
+		aux.setStatus(true);
+		sessao.update(aux);
+		sessao.getTransaction().commit();
+		sessao.close();
+	}
+	
+
+	public void delete(Long id) {
 
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		sessao.beginTransaction();
@@ -36,6 +48,17 @@ public class TaskDAO {
 		List<Task> taskList = sessao.getNamedQuery("Task.findAll").list();
 		sessao.close();
 
+		return taskList;
+	}
+	
+	public List<Task> findTask(Task findTask) {
+		Session sessao = HibernateUtil.getSessionFactory().openSession();
+		List<Task> taskList = sessao.getNamedQuery("Task.findByForm").
+				setParameter("title",findTask.getTitle()).
+				setParameter("id",findTask.getId()).
+				setParameter("status",findTask.getStatus()).
+				list();
+		sessao.close();
 		return taskList;
 	}
 }
