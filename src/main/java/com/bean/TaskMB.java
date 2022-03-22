@@ -31,7 +31,9 @@ public class TaskMB {
 	public void setTaskEdit(Task taskEdit) {
 		this.taskEdit = taskEdit;
 	}
-
+	
+	TaskDAO taskDao = new TaskDAO();
+	
 	private Profile profile = new Profile();
 	
 	private List<Profile> profiles= new ArrayList<>();
@@ -56,38 +58,39 @@ public class TaskMB {
 	}
 	
     public void saveTask() {
-		TaskDAO dao = new TaskDAO();
 		task.setResponsible(profile);
+		
 		if(task.getId()== null)
-		dao.save(task);
+			taskDao.save(task);
 		else
-		dao.update(task);
-		taskList = dao.showAllTasks();
+			taskDao.update(task);
+		
+		taskList = taskDao.showAllTasks();
 		task = new Task();
 	}
     
     public void doneTask(Long id) {
-		TaskDAO dao = new TaskDAO();
-		dao.done(id);
-		taskList = dao.showAllTasks();
+		taskDao.done(id);
+		taskList = taskDao.showAllTasks();
 	}
 
 	public void delete(Long id) {
 		TaskDAO dao = new TaskDAO();
-		dao.delete(id);
+		taskDao.delete(id);
 		taskList = dao.showAllTasks();
 	}
 	
 	public void findTask(){
 		TaskDAO dao = new TaskDAO();
-		task.setResponsible(profile);
-		//Task task = new Task();
+		
+		if(profile.getId()!=null)
+			task.setResponsible(profile);
+		
 	    taskList = dao.findTask(task);
 	}
 	
 	public String redirectToEdit(Long id) {
-		TaskDAO dao = new TaskDAO();
-		task = dao.findById(id);
+		task = taskDao.findById(id);
 		return "index.xhtml?faces-redirect=true";
 	}
 	
@@ -99,6 +102,7 @@ public class TaskMB {
 	@PostConstruct
 	public void init() {
 		TaskDAO dao = new TaskDAO();
+		profile = new Profile();
 		task = new Task();
 		taskList = dao.showAllTasks();
 	}

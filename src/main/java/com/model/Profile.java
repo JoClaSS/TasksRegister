@@ -2,6 +2,9 @@ package com.model;
 
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +22,10 @@ import javax.persistence.SequenceGenerator;
     @NamedQuery(name = "Profile.findAll", query = "SELECT p FROM Profile p"),
     @NamedQuery(name = "Profile.findById", query = "SELECT p FROM Profile p WHERE p.id = :id")
     })
-public class Profile {
+public class Profile implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@SequenceGenerator(name = "seqp", sequenceName = "profile_sequence", allocationSize = 0)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqp")
@@ -27,6 +33,7 @@ public class Profile {
 	Long id;
 	@Column(name = "name")
 	String name;
+	
 	public Long getId() {
 		return id;
 	}

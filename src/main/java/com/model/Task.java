@@ -2,18 +2,22 @@ package com.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.hibernate.annotations.ManyToAny;
 
 @Entity
 @Table(name = "task", schema = "public")
@@ -38,7 +42,7 @@ public class Task implements Serializable {
 	String title;
 	@Column(name = "description")
 	String description;
-	@OneToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "responsible")
 	Profile responsible;
 	@Column(name = "priority")

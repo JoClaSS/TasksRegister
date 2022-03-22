@@ -49,20 +49,12 @@ public class ProfileMB {
 	public ProfileMB() {	
 	}
 	
-	public String redireciona() {
-        return "http://localhost:8080/challenge/pessoas.xhtml";
-    }
 
     public void save() {
 		dao.save(profile);
 		profileList = dao.showAllProfiles();
 	}
 
-	public void delete(int id) {
-		dao.delete(id);
-
-		profileList = dao.showAllProfiles();
-	}
 
 	@PostConstruct
 	public void init() {

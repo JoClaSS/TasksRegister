@@ -4,15 +4,16 @@ A Aplicação foi desenvolvida como Java Web com base Jave EE em JavaServer Face
 
 Este projeto utiliza o Maven como gerenciador de depências, Java 11 e banco de dados utilizado para a implementação da persistencia de dados foi o Postgresql junto com a framework Hibernate 5.6 mais a API JPA. 
 
-Itens da avaliação:
+Itens Bônus:
 
 A - Foi utilizada JSF para a aplicação WEB, no quesito de gerenciamento de dados por meio de um ManagedBean. 
 
-B - Persistencia de dados atingida por meio da framework Hibernate em conjunto com JPA, banco de dados utilizado: Postgres. Os Dados adquiridos pela classe TaskMB que é um ManagedBean são enviados para a classe TaskDAO ao qual tem função de salvar os dados adquiridos, listar, ou deletar, fazendo uso do objeto sessao, da classe Session da framework Hibernate, para o gerenciamento do banco de dados.
+B - Persistencia de dados atingida por meio da framework Hibernate em conjunto com JPA, banco de dados utilizado: PostgreSQL. Os Dados adquiridos pelas classe TaskMB que é um ManagedBean são enviados para a classe TaskDAO ao qual tem função de salvar os dados adquiridos, listar, ou deletar, fazendo uso do objeto sessao, da classe Session da framework Hibernate, para o gerenciamento do banco de dados.
 
 C - O Hibernate cuida de toda a parte de gerenciamento do banco de dados da aplicação.
+
+D - Foram realizados testes nas classes TasksMB e ProfileMB utilizando o Mockito e JUnit
  
-D - Foi utilizado Bootstrap 4 para a estilização de toda a página.
 
 Orientações:
 
