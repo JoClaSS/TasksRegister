@@ -24,15 +24,7 @@ public class TaskMB {
 	
 	private Task taskEdit = new Task();
 	
-	public Task getTaskEdit() {
-		return taskEdit;
-	}
-
-	public void setTaskEdit(Task taskEdit) {
-		this.taskEdit = taskEdit;
-	}
-	
-	TaskDAO taskDao = new TaskDAO();
+	private TaskDAO taskDao = new TaskDAO();
 	
 	private Profile profile = new Profile();
 	
@@ -42,16 +34,6 @@ public class TaskMB {
 
 	private List<Task> taskList = new ArrayList<>();
 	
-	private List<Task> selectList = new ArrayList<>();
-
-	public List<Task> getSelectList() {
-		return selectList;
-	}
-
-	public void setSelectList(List<Task> selectList) {
-		this.selectList = selectList;
-	}
-
 	private List<Profile> profileList = new ArrayList<>();
 	
 	public TaskMB() {	
@@ -90,11 +72,13 @@ public class TaskMB {
 	
 	public String redirectToEdit(Long id) {
 		task = taskDao.findById(id);
+		
 		return "index.xhtml?faces-redirect=true";
 	}
 	
 	public String redirectToIndex() {
 		task = new Task();
+		
 		return "index.xhtml?faces-redirect=true";
 	}
 
@@ -105,9 +89,6 @@ public class TaskMB {
 		task = new Task();
 		taskList = dao.showAllTasks();
 	}
-	
-
-	
 	
     public List<Profile> getProfiles() {
     	return dao.showAllProfiles();
@@ -150,4 +131,11 @@ public class TaskMB {
 		this.taskList = taskList;
 	}
 	
+	public Task getTaskEdit() {
+		return taskEdit;
+	}
+
+	public void setTaskEdit(Task taskEdit) {
+		this.taskEdit = taskEdit;
+	}
 }

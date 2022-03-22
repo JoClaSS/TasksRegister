@@ -19,33 +19,7 @@ public class ProfileMB {
 	private ProfileDAO dao = new ProfileDAO();
 
 	private List<Profile> profileList = new ArrayList<>();
-	
-	private List<String> nameList = new ArrayList<>();
-	
-	public List<String> getNameList() {
-		return dao.showNames();
-	}
 
-	public void setNameList(List<String> nameList) {
-		this.nameList = nameList;
-	}
-
-	public Profile getProfile() {
-		return profile;
-	}
-
-	public void setProfile(Profile profile) {
-		this.profile = profile;
-	}
-
-	public List<Profile> getprofileList() {
-		return profileList;
-	}
-
-	public void setprofileList(List<Profile> profileList) {
-		this.profileList = profileList;
-	}
-	
 	public ProfileMB() {	
 	}
 	
@@ -62,5 +36,22 @@ public class ProfileMB {
 		
 		profile = new Profile();
 	}
+	
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+
+	public List<Profile> getprofileList() {
+		return profileList;
+	}
+
+	public void setprofileList(List<Profile> profileList) {
+		this.profileList = profileList;
+	}
+	
 
 }
