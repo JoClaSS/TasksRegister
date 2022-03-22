@@ -75,18 +75,17 @@ public class TaskMB {
 	}
 
 	public void delete(Long id) {
-		TaskDAO dao = new TaskDAO();
 		taskDao.delete(id);
-		taskList = dao.showAllTasks();
+		taskList = taskDao.showAllTasks();
 	}
 	
 	public void findTask(){
-		TaskDAO dao = new TaskDAO();
+		task.setResponsible(null);
 		
 		if(profile.getId()!=null)
 			task.setResponsible(profile);
-		
-	    taskList = dao.findTask(task);
+
+	    taskList = taskDao.findTask(task);
 	}
 	
 	public String redirectToEdit(Long id) {
