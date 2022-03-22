@@ -23,7 +23,7 @@
 
 	<link rel="stylesheet" type="text/css" href="css/estilos.css" />
 
-	<title>JSF - Persitencia de dados</title>
+	<title>Cadastro de atividades</title>
 </h:head>
 
 <h:body>
@@ -32,7 +32,7 @@
 	<div class="container">
 		<a href="index.html" class="navbar-brand">
 			<h6>
-				<span class="badge badge-secondary" action="#{taskMB.redireciona()}">+Pessoas</span>
+				<span class="badge badge-secondary" action=" ">Buscar</span>
 			</h6>
 		</a>
 		<button class="navbar-toggler" data-toggle="collapse"
@@ -43,37 +43,66 @@
 		<div class="collapse navbar-collapse" id="nav-principal"></div>
 	</div>
 	</nav> </header>
-	<h2 class="display-5 mt-4 mb-4">Cadastrar uma tarefa</h2>
-	<h:panelGrid columns="2">
-		<h:form class="mt-4 mb-4">
-			<ul class="list-group">
-				<li class="list-group-item">Título<h:inputText
-						value="#{taskMB.task.title}" id="title"
-						class="form-control input-md" /></li>
-				<li class="list-group-item">Prioridade<h:inputText
-						value="#{taskMB.task.priority}" id="priority"
-						class="form-control input-md" /></li>
-				<li class="list-group-item">Vencimento<h:inputText
-						value="#{taskMB.task.dealine}" id="deadline"
-						class="form-control input-md" /></li>
-				<li class="list-group-item">Atribuir a: <h:selectOneMenu
-						value="#{taskMB.task.responsible}">
-						<f:selectItem itemValue=" " itemLabel="Selecione uma opção" />
-						<f:selectItems value="#{profileMB.profileList}" var="profile"
-							itemLabel="#{profile.name}" itemValue="#{profile}" />
-					</h:selectOneMenu></li>
-				<li class="list-group-item">Detalhes<h:inputTextarea
-						value="#{taskMB.task.description}" id="description"
-						class="form-control input-md" /></li>
-				<li class="list-group-item">Status<h:selectBooleanCheckbox
-						value="#{taskMB.task.status}" id="status"
-						class="form-control input-md" /></li>
-			</ul>
-			<h:commandButton value="submit" class="btn btn-primary ml-2"
-				action="#{taskMB.saveTask()}" />
-		</h:form>
-	</h:panelGrid>
+	<div class="container">
+		<div class="row red align-items-center justify-content-center">
+			<div class="align-self-center">
+				<h:panelGrid columns="2" cellpadding="50" cellspacing="1">
+					<h:form class="mt-4 mb-4">
+						<div class="text-center">
+							<h5 class="display-5 mt-4 mb-4">Atribuir uma tarefa</h5>
+							<ul class="list-group">
+								<li class="list-group-item">Título<h:inputText
+										value="#{taskMB.task.title}" id="title"
+										class="form-control input-md" /></li>
+								<li class="list-group-item">Detalhes<h:inputTextarea
+										value="#{taskMB.task.description}" id="description"
+										class="form-control input-md" /></li>
+								<li class="list-group-item">Prazo<h:inputText
+										value="#{taskMB.task.dealine}" id="deadline"
+										class="form-control input-md" /></li>
+								<li class="list-group-item" id="priority">Prioridade: <h:selectOneMenu
+										value="#{taskMB.task.priority}">
+										<f:selectItem itemLabel="Baixo" itemValue="Baixo" />
+										<f:selectItem itemLabel="Médio" itemValue="Médio" />
+										<f:selectItem itemLabel="Alto" itemValue="Alto" />
+									</h:selectOneMenu></li>
+								<li class="list-group-item" id="responsible">Atribuir a: <h:selectOneMenu
+										value="#{taskMB.profile.id}">
+										<f:selectItem itemLabel="Selecione uma opção" />
+										<f:selectItems value="#{taskMB.profiles}" var="profile"
+											itemLabel="#{profile.name}" itemValue="#{profile.id}" />
+									</h:selectOneMenu></li>
+								<li class="list-group-item" id="status">Status: <h:selectOneMenu
+										value="#{taskMB.task.status}">
+										<f:selectItem itemLabel="Em andamento" itemValue="false" />
+										<f:selectItem itemLabel="Concluído" itemValue="true" />
+									</h:selectOneMenu></li>
+							</ul>
+						</div>
+						<p></p>
+						<div class="text-center">
+							<h:commandButton value="Atribuir" class="btn btn-success"
+								action="#{taskMB.saveTask()}" />
+						</div>
 
+					</h:form>
+					<h:form class="mt-4 mb-4">
+						<h5 class="display-5 mt-4 mb-4">Adicionar uma pessoa</h5>
+						<ul class="list-group">
+							<li class="list-group-item">Nome<h:inputText
+									value="#{profileMB.profile.name}" id="name"
+									class="form-control input-md" /></li>
+						</ul>
+						<p></p>
+						<div class="text-center">
+							<h:commandButton value="Adicionar" class="btn btn-success"
+								action="#{profileMB.save()}" />
+						</div>
+					</h:form>
+				</h:panelGrid>
+			</div>
+		</div>
+	</div>
 
 </h:body>
 </html>

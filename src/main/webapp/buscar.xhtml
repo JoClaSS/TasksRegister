@@ -72,7 +72,7 @@
 						</div>
 					</h:form>
 					<h:form>
-						<h:dataTable value="#{taskMB.selectList}" var="tasks" class="table">
+						<h:dataTable value="#{taskMB.taskList}" var="tasks" class="table">
 
 							<h:column>
 								<f:facet name="header"> Id</f:facet>
@@ -92,7 +92,7 @@
 									action="#{taskMB.doneTask(tasks.id)}" />
 									<span>  </span>
 								<h:commandButton value="Editar" class="btn btn-warning btn-sm"
-									action="#{taskMB.redirectToEdit()}"/>
+									action="#{taskMB.redirectToEdit(tasks.id)}"/>
 									<span>  </span>
 								<h:commandButton value="Deletar" class="btn btn-danger btn-sm" onclick="if (!confirm('Deletar a tarefa?'))
                                                 return false" action="#{taskMB.delete(tasks.id)}"/>

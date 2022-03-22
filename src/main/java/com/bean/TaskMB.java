@@ -7,19 +7,31 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import com.dao.ProfileDAO;
 import com.dao.TaskDAO;
 import com.model.Profile;
 import com.model.Task;
 
-@RequestScoped
+@SessionScoped
 @ManagedBean
 public class TaskMB {
 	
 	private Task task = new Task();
 	
+	private Task taskEdit = new Task();
+	
+	public Task getTaskEdit() {
+		return taskEdit;
+	}
+
+	public void setTaskEdit(Task taskEdit) {
+		this.taskEdit = taskEdit;
+	}
+
 	private Profile profile = new Profile();
 	
 	private List<Profile> profiles= new ArrayList<>();
@@ -39,6 +51,54 @@ public class TaskMB {
 	}
 
 	private List<Profile> profileList = new ArrayList<>();
+	
+	public TaskMB() {	
+	}
+	
+    public void saveTask() {
+		TaskDAO dao = new TaskDAO();
+		task.setResponsible(profile);
+		if(task.getId()== null)
+		dao.save(task);
+		else
+		dao.update(task);
+		taskList = dao.showAllTasks();
+		task = new Task();
+	}
+    
+    public void doneTask(Long id) {
+		TaskDAO dao = new TaskDAO();
+		dao.done(id);
+		taskList = dao.showAllTasks();
+	}
+
+	public void delete(Long id) {
+		TaskDAO dao = new TaskDAO();
+		dao.delete(id);
+		taskList = dao.showAllTasks();
+	}
+	
+	public void findTask(){
+		TaskDAO dao = new TaskDAO();
+		//Task task = new Task();
+	    taskList = dao.findTask(task);
+	}
+	
+	public String redirectToEdit(Long id) {
+		TaskDAO dao = new TaskDAO();
+		task = dao.findById(id);
+		return "index.xhtml?faces-redirect=true";
+	}
+
+	@PostConstruct
+	public void init() {
+		TaskDAO dao = new TaskDAO();
+		task = new Task();
+		taskList = dao.showAllTasks();
+	}
+	
+
+	
 	
     public List<Profile> getProfiles() {
     	return dao.showAllProfiles();
@@ -80,45 +140,5 @@ public class TaskMB {
 	public void settaskList(List<Task> taskList) {
 		this.taskList = taskList;
 	}
-	
-	public TaskMB() {	
-	}
-	
-    public void saveTask() {
-		TaskDAO dao = new TaskDAO();
-		task.setResponsible(profile);
-		dao.save(task);
-		taskList = dao.showAllTasks();
-	}
-    
-    public void doneTask(Long id) {
-		TaskDAO dao = new TaskDAO();
-		dao.done(id);
-		taskList = dao.showAllTasks();
-	}
-
-	public void delete(Long id) {
-		TaskDAO dao = new TaskDAO();
-		dao.delete(id);
-		taskList = dao.showAllTasks();
-	}
-	
-	public void findTask(){
-		TaskDAO dao = new TaskDAO();
-		selectList = dao.findTask(task);
-	}
-
-	@PostConstruct
-	public void init() {
-		TaskDAO dao = new TaskDAO();
-		taskList = dao.showAllTasks();
-		task = new Task();
-	}
-	
-	public void redirectToEdit() throws IOException {
-		FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-		//return "index.xhtml?faces-redirect=true";
-	}
-	
 	
 }

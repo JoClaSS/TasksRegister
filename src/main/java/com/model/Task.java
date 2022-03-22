@@ -20,10 +20,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({ @NamedQuery(name = "Task.findAll", query = "SELECT t FROM Task t"),
 		@NamedQuery(name = "Task.findByForm", query = "SELECT t FROM Task t WHERE "
-				+ "((t.title = :title) or (t.id = :id))"
-				+ "or (t.status = :status)"			
-				)
-, })
+				+ "((:title is null or t.title = :title) or (:id is null or t.id = :id))"
+				+ "and (t.status = :status)"			
+				),
+		@NamedQuery(name = "Task.findById", query = "SELECT t FROM Task t where (t.id = :id)")
+})
 public class Task implements Serializable {
 
 	private static final long serialVersionUID = 1L;
