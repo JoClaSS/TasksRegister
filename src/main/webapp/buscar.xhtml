@@ -29,10 +29,10 @@
 	<header> <nav
 		class="navbar navbar-expand-sm navbar-dark bg-dark">
 	<div class="container">
-		<a href="index.html" class="navbar-brand"> <!--<img src="img/Esig.png" width="180"/>-->
-			<h6>
-				<span class="badge badge-secondary">+Tarefas</span>
-			</h6>
+		<a href="index.html" class="navbar-brand"> <!--<img src="img/Esig.png" width="180"/>--> 
+		</a>
+		<a href="index.xhtml" >
+		<h:commandButton class="btn btn-danger btn-sm" action="#{taskMB.redirectToIndex()}" value="Tarefas" />
 		</a>
 		<button class="navbar-toggler" data-toggle="collapse"
 			data-target="#nav-principal">
@@ -49,13 +49,13 @@
 					<h:form class="mt-4 mb-4">
 						<h5>Buscar tarefas</h5>
 						<ul class="list-group">
-							<li class="list-group-item">Título<h:inputText id="title"
+							<li class="list-group-item">Buscar por título<h:inputText id="title"
 									value="#{taskMB.task.title}" class="form-control input-md" /></li>
-							<li class="list-group-item">Id<h:inputText id="number" type="number"
+							<li class="list-group-item">Buscar por ID<h:inputText id="number" type="number"
 									value="#{taskMB.task.id}" class="form-control input-md" /></li>
-							<li class="list-group-item" id="responsible">Responsável: <h:selectOneMenu
+							<li class="list-group-item" id="responsible">Buscar pelo responsável: <h:selectOneMenu
 										value="#{taskMB.profile.id}">
-										<f:selectItem itemLabel="Selecione uma opção" />
+										<f:selectItem itemLabel="Selecione uma opção" itemValue=" " />
 										<f:selectItems value="#{taskMB.profiles}" var="profile"
 											itemLabel="#{profile.name}" itemValue="#{profile.id}" />
 									</h:selectOneMenu></li>

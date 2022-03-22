@@ -2,6 +2,8 @@ package com.dao;
 
 import java.util.List;
 import org.hibernate.Session;
+
+import com.model.Profile;
 import com.model.Task;
 import com.util.HibernateUtil;
 
@@ -65,14 +67,16 @@ public class TaskDAO {
 
 	public List<Task> findTask(Task findTask) {
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
-	
+		
 		List<Task> taskList = sessao.getNamedQuery("Task.findByForm")
 				.setParameter("title", findTask.getTitle())
 				.setParameter("id", findTask.getId())
 				.setParameter("status", findTask.getStatus())
+				.setParameter("responsible", findTask.getResponsible())
 				.list();
 		sessao.close();
 		return taskList;
+	 	
 	}
 	
 	public Task findById(Long id) {

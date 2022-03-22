@@ -16,7 +16,8 @@ import javax.persistence.SequenceGenerator;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Profile.findAllName", query = "SELECT p.name FROM Profile p"),
-    @NamedQuery(name = "Profile.findAll", query = "SELECT p FROM Profile p")
+    @NamedQuery(name = "Profile.findAll", query = "SELECT p FROM Profile p"),
+    @NamedQuery(name = "Profile.findById", query = "SELECT p FROM Profile p WHERE p.id = :id")
     })
 public class Profile {
 	@Id

@@ -20,8 +20,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({ @NamedQuery(name = "Task.findAll", query = "SELECT t FROM Task t"),
 		@NamedQuery(name = "Task.findByForm", query = "SELECT t FROM Task t WHERE "
-				+ "((:title is null or t.title = :title) or (:id is null or t.id = :id))"
-				+ "and (t.status = :status)"			
+				+ "(((t.id = :id) or  (t.title = :title) or (t.responsible = :responsible)) and (t.status = :status)) "
+				),
+		@NamedQuery(name = "Task.findByStatus", query = "SELECT t FROM Task t WHERE (t.status = :status) "
 				),
 		@NamedQuery(name = "Task.findById", query = "SELECT t FROM Task t where (t.id = :id)")
 })

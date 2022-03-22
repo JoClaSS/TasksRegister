@@ -80,6 +80,7 @@ public class TaskMB {
 	
 	public void findTask(){
 		TaskDAO dao = new TaskDAO();
+		task.setResponsible(profile);
 		//Task task = new Task();
 	    taskList = dao.findTask(task);
 	}
@@ -87,6 +88,11 @@ public class TaskMB {
 	public String redirectToEdit(Long id) {
 		TaskDAO dao = new TaskDAO();
 		task = dao.findById(id);
+		return "index.xhtml?faces-redirect=true";
+	}
+	
+	public String redirectToIndex() {
+		task = new Task();
 		return "index.xhtml?faces-redirect=true";
 	}
 
