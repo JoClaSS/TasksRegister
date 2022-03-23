@@ -1,6 +1,5 @@
 package com.bean;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
+
 
 import com.dao.ProfileDAO;
 import com.dao.TaskDAO;
@@ -34,7 +32,6 @@ public class TaskMB {
 
 	private List<Task> taskList = new ArrayList<>();
 	
-	private List<Profile> profileList = new ArrayList<>();
 	
 	public TaskMB() {	
 	}
@@ -106,15 +103,6 @@ public class TaskMB {
 		this.profile = profile;
 	}
     
-    
-	public List<Profile> getProfileList() {
-		return dao.showAllProfiles();
-	}
-
-	public void setProfileList(List<Profile> profileList) {
-		this.profileList = profileList;
-	}
-
 	public Task getTask() {
 		return task;
 	}

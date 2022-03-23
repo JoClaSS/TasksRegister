@@ -12,7 +12,7 @@ B - Persistencia de dados atingida por meio da framework Hibernate em conjunto c
 
 C - O Hibernate cuida de toda a parte de gerenciamento do banco de dados da aplicação.
 
-D - Foram realizados testes nas classes TasksMB e ProfileMB utilizando o Mockito e JUnit
+D - Foram realizados testes unitários nas classes TaskMB e ProfileMB utilizando o Mockito e JUnit
  
 
 Orientações:

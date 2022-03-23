@@ -32,8 +32,6 @@ public class ProfileMB {
 
 	@PostConstruct
 	public void init() {
-		//profileList = dao.showAllProfiles();
-		
 		profile = new Profile();
 	}
 	
